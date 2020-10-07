@@ -14,7 +14,6 @@ import androidx.annotation.RequiresApi;
 import java.util.Random;
 
 public class Face extends SurfaceView {
-    private Face faceView;
 
     //Paints
     Paint skinPaint = new Paint();
@@ -33,6 +32,7 @@ public class Face extends SurfaceView {
         super(context, attrs);
         setWillNotDraw(false);
 
+        //Basically randomizes all of my colors and style, and after doing so, also sets up my Paint values.
         this.skinColor = randomize(1);
         skinPaint.setColor(this.skinColor);
         skinPaint.setStyle(Paint.Style.FILL);
@@ -47,9 +47,11 @@ public class Face extends SurfaceView {
 
         this.hairStyle = randomize(2);
 
+        //This paint is mainly so I can "erase" parts of a drawing to make new shapes.
         backgroundFiller.setColor(Color.WHITE);
         backgroundFiller.setStyle(Paint.Style.FILL);
 
+        //made the background white so it's easier to see.
         setBackgroundColor(Color.WHITE);
     }
 
@@ -57,9 +59,10 @@ public class Face extends SurfaceView {
     public int randomize(int i) {
         Random random = new Random();
         if(i == 1) {
-            int r = random.nextInt(255);
-            int g = random.nextInt(255);
-            int b = random.nextInt(255);
+            //Random program that makes a number from 0-255.
+            int r = random.nextInt(256);
+            int g = random.nextInt(256);
+            int b = random.nextInt(256);
             int color = Color.rgb(r,g,b);
             return color;
         } else {
@@ -69,6 +72,7 @@ public class Face extends SurfaceView {
 
     }
 
+    //Getters and Setters just incase I need them. Android studio messed up my formatting somehow
     public int getHairColor(){
         return this.hairColor;
     }
@@ -101,6 +105,7 @@ public class Face extends SurfaceView {
         return this.hairStyle;
     }
 
+    //This requires API makes it so lower "leveled" devices won't crash when using it.
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void drawEyes(Canvas canvas) {
         canvas.drawOval(250,300,300,350, eyePaint);
@@ -109,6 +114,7 @@ public class Face extends SurfaceView {
 
     public void drawMouth(Canvas canvas) {
 
+        //Points for my smiling face :)
         float[][] points = {{2f,9f} , {3f,10f} , {6f,11f} , {9f, 10f} , {10f, 9f} ,
                 {9f, 12f}, {3f, 12f}, {2f, 9f}};
 
@@ -129,8 +135,9 @@ public class Face extends SurfaceView {
         eyePaint.setColor(this.getEyeColor());
         hairPaint.setColor(this.getHairColor());
 
+        //Basically makes it so that it checkes what hair it should be and draws it based on that.
         if(this.hairStyle == 2) {
-            canvas.drawRect(50, 0, 650, 750, backgroundFiller);
+            //Do nothing
         } else if (this.hairStyle  == 1) {
             //Draw a bowl cut hair style.
             canvas.drawOval(50,0,650,750, hairPaint);

@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity{
         Face temp = findViewById(R.id.face);
         Reader eventListener = new Reader (tvRed, tvGreen, tvBlue, temp);
 
-        //How I managed to set up the Spinner /\/\
+        //How I managed to set up the Spinner \/ \/ \/ \/
         //Used Developer.mozilla.org for this code and changed it a little to work for this homework.
         Spinner spinner = findViewById(R.id.spinner);
         ArrayList<String> Hair_lengths = new ArrayList<>();
@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity{
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Hair_lengths);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+
+        //Attaching all Listeners to my buttons and stuff
         spinner.setOnItemSelectedListener(eventListener);
 
         SeekBar seekRed = findViewById(R.id.seekRed);
@@ -68,6 +70,10 @@ public class MainActivity extends AppCompatActivity{
 
         RadioButton skinButton = findViewById(R.id.radioButton15);
         skinButton.setOnClickListener(eventListener);
+    }
+
+    private void update() {
+
     }
 
 }

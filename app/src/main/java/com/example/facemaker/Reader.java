@@ -16,7 +16,9 @@ public class Reader implements SeekBar.OnSeekBarChangeListener, View.OnClickList
 
         private Face newFace;
 
-        private int currentColor;
+        public int currentRed;
+        public int currentGreen;
+        public int currentBlue;
 
         private int whatsBeingSelected;
 
@@ -74,21 +76,27 @@ public class Reader implements SeekBar.OnSeekBarChangeListener, View.OnClickList
                                 newFace.setEyeColor(newFace.randomize(1));
                                 newFace.setSkinColor(newFace.randomize(1));
                                 newFace.setHairStyle(newFace.randomize(2));
+
                                 break;
 
-                        case R.id.radioButton13:
+                        case R.id.radioButton13: //Hair
                                 this.whatsBeingSelected = 1;
-                                //Change RGB values from 0-256
+                                //How do I change the progress bar to show this?
+
+                                currentRed = Color.red(newFace.getHairColor());
+                                currentBlue = Color.blue(newFace.getHairColor());
+                                currentGreen = Color.green(newFace.getHairColor());
+                                //Change RGB values from 0-255
                                 break;
 
-                        case R.id.radioButton14:
+                        case R.id.radioButton14: //Eyes
                                 this.whatsBeingSelected = 2;
-                                //Change RGB values from 0-256
+                                //Change RGB values from 0-255
                                 break;
 
-                        case R.id.radioButton15:
+                        case R.id.radioButton15: //Skin
                                 this.whatsBeingSelected = 3;
-                                //Change RGB values from 0-256
+                                //Change RGB values from 0-255
                                 break;
 
                         default:
@@ -101,15 +109,6 @@ public class Reader implements SeekBar.OnSeekBarChangeListener, View.OnClickList
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 newFace.setHairStyle(i);
-                if (i == 0){
-                        //Change RGB values from 0-256
-                }
-                if (i == 1){
-                        //Change RGB values from 0-256
-                }
-                if (i == 2){
-                        //Change RGB values from 0-256
-                }
                 newFace.invalidate();
         }
 
